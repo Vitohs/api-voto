@@ -1,6 +1,7 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { createCharacterDTO } from './dtos/create.character.dto.js';
+import { good_response } from '../../common/helpers/response.helper.js';
 
 @Injectable()
 export class CharacterService {
@@ -10,16 +11,17 @@ export class CharacterService {
         const character = await this.prisma.character.create({
             data: {
                 name: data.name
+            },
+            select: {
+                name: true,
+                status: true
             }
         })
         
-        return {
-            message: 'personagem criado com sucesso!',
-            data: character
-        }
+        return good_response('personagem criado com sucesso', character)
     }
 
     public ping() {
-        return 'vivi é fodakk'
+        return 'são paulo futebol clube'
     }
 }

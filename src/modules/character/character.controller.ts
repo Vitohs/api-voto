@@ -4,7 +4,7 @@ import { createCharacterDTO } from './dtos/create.character.dto.js';
 
 @Controller('character')
 export class CharacterController {
-    constructor(private readonly service: CharacterService){}
+    constructor(private readonly service: CharacterService) {}
 
     @Post()
     create(@Body() data: createCharacterDTO) {
